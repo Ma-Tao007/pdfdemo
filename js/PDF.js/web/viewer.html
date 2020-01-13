@@ -30,7 +30,7 @@
 
 	<body tabindex="1" class="loadingInProgress">
 		<!-- 加入所需要的对应的页码编码和top值以便父页面获取 -->
-		<input type="hidden" id='page_top' name='page_top'/>
+		<input type="hidden" id='page_top' name='page_top' onclick="pageClick()"/>
 		<input type="hidden" name="page_cache" id="page_cache" />
 		<div id="outerContainer">
 
@@ -451,7 +451,13 @@
 	        docElm.msRequestFullscreen();
 	    }
 	}
-	
+	function pageClick(){
+		console.log("pdf页面模拟点击")
+		var evtObj = document.createEvent('UIEvents');
+		evtObj.initUIEvent('input', true, true, window, 1 );
+		document.querySelector("#findInput").dispatchEvent(evtObj);
+	}
+
 	// 退出全屏
 	function exitFullscreen() {
 	    if (document.exitFullscreen) {

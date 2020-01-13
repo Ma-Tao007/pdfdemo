@@ -10,12 +10,13 @@
 		<button class='get'>点击获取</button>
 		<button class='set1'>点击定位1</button>
 		<button hidden="hidden" class='set2'>点击定位2</button>
+		请输入：<input id='input' />
 	</div>
 		
 		<div id='ifreme' style='margin-left: 100px;width:80%;height:1000px'>
 			<iframe id="iframe01" name='iframe01' style="width:100%;height:100%;" 
-			src='http://192.168.1.136:8848/PDF测试/js/PDF.js/web/viewer.html?
-			file=http://192.168.1.136:8848/PDF测试/src/demo.pdf&
+			src='http://192.168.0.103:5500/js/PDF.js/web/viewer.html?
+			file=http://192.168.0.103:5500/src/demo.pdf&
 			page=1&top=0&zoom=1.3'></iframe>
 		</div>
 
@@ -25,14 +26,32 @@
 	</body>
 	<script type="text/javascript">	
 		$(function() {
+
+			$("#input").on('input',function(){
+				//console.log($("#iframe01").contents().find("#findInput"))
+				console.log($("#input").val())
+				$("#iframe01").contents().find("#findInput").val($("#input").val());
+				
+				$("#iframe01").contents().find("#page_top").click();
+			})
+		
+
 			var top = "";
 			var cache = "";
 			$(".get").click(function(){
+				
+				$("#input").val("22")
+				//$("#iframe01").contents().find("#findInput").change()
+				var evtObj = document.createEvent('UIEvents');
+				evtObj.initUIEvent('input', true, true, window, 1 );
+				document.querySelector("#input").dispatchEvent(evtObj);
+				//($("#iframe01").contents().find("#findInput")).dispatchEvent(evtObj);
+			
 				//获取子页面对应的页面编码和top
 				top = $("#iframe01").contents().find("#page_top").val();
 				cache = $("#iframe01").contents().find("#page_cache").val().split(" ")[0];
-				console.log("父页面获取的top:"+$("#iframe01").contents().find("#page_top").val());
-				console.log("父页面获取的页码编码:"+$("#iframe01").contents().find("#page_cache").val());		
+			//	console.log("父页面获取的top:"+$("#iframe01").contents().find("#page_top").val());
+				//console.log("父页面获取的页码编码:"+$("#iframe01").contents().find("#page_cache").val());		
 			})
 			
 			$(".set1").click(function(){

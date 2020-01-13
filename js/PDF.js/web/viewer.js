@@ -131,6 +131,7 @@ var pdfjsWebApp = void 0,
   __webpack_require__(43);
 }
 
+
 function getViewerConfiguration() {
   return {
     appContainer: document.body,
@@ -9298,7 +9299,7 @@ var BaseViewer = function () {
 		var intLeft = Math.round(topLeft[0]);
       var intTop = Math.round(topLeft[1]);
       pdfOpenParams += ',' + intLeft + ',' + intTop;
-	console.log("当前页码："+pageNumber+"当前参数"+pdfOpenParams)
+	//console.log("当前页码："+pageNumber+"当前参数"+pdfOpenParams)
       this._location = {
         pageNumber: pageNumber,
         scale: normalizedScaleValue,
