@@ -452,7 +452,6 @@
 	    }
 	}
 	function pageClick(){
-		console.log("pdf页面模拟点击")
 		var evtObj = document.createEvent('UIEvents');
 		evtObj.initUIEvent('input', true, true, window, 1 );
 		document.querySelector("#findInput").dispatchEvent(evtObj);
